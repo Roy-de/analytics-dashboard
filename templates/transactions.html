@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Transactions</title>
+</head>
+<body class="bg-gray-100">
+<div class="flex h-screen">
+    <!-- Sidebar -->
+    <aside class="w-fit h-screen bg-white shadow-md flex flex-col items-center justify-start px-1.5">
+        <div class="py-6 w-full px-2">
+            <h1 class="text-2xl font-bold text-blue-800">Analytics</h1>
+        </div>
+        <nav class="mt-4">
+            <ul class="space-y-4">
+                <li class="hover:bg-blue-100">
+                    <a href="/" class="block py-2 w-full pr-12 pl-2 text-gray-900 font-semibold {% if active_page == 'dashboard' %}bg-blue-500 text-white{% endif %}">Dashboard</a>
+                </li>
+                <li class="hover:bg-blue-100">
+                    <a href="/transactions" class="block py-2 w-full pr-12 pl-2 text-gray-900 font-semibold {% if active_page == 'transactions' %}bg-blue-500 text-white{% endif %}">Transactions</a>
+                </li>
+                <li class="hover:bg-blue-100">
+                    <a href="/billings" class="block py-2 w-full pr-12 pl-2 text-gray-900 font-semibold {% if active_page == 'billings' %}bg-blue-500 text-white{% endif %}">Billings</a>
+                </li>
+                <li class="hover:bg-blue-100">
+                    <a href="/sms" class="block py-2 w-full pr-12 pl-2 text-gray-900 font-semibold {% if active_page == 'sms' %}bg-blue-500 text-white{% endif %}">SMS</a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main content -->
+    <main class="flex-1 p-6 overflow-y-scroll h-screen">
+        <div class="w-full bg-white p-2 shadow-lg">
+            <h2 class="text-4xl font-semibold text-blue-900">Transactions</h2>
+        </div>
+        <div class="mt-6 space-y-8 flex flex-col item-center justify-center text-center">
+            <span class="text-3xl font-semibold py-4">Processed Transactions</span>
+            <div class="flex flex-row space-x-2 py-4">
+                                {% for image in processed %}
+                <div class="shadow-lg rounded-lg overflow-hidden">
+                    <img src="{{ url_for('static', filename='transactions/' ~ image) }}" alt="{{ image }}" class="w-full h-auto">
+                </div>
+                {% endfor %}
+            </div>
+            <span class="text-3xl font-semibold py-4">Successful Transactions</span>
+            <div class="flex flex-row space-x-2 py-4">
+                {% for image in successful %}
+                <div class="shadow-lg rounded-lg overflow-hidden">
+                    <img src="{{ url_for('static', filename='transactions/' ~ image) }}" alt="{{ image }}" class="w-full h-auto">
+                </div>
+                {% endfor %}
+            </div>
+            <span class="text-3xl font-semibold py-4">Pending Transactions</span>
+            <div class="grid grid-cols-2 py-4 gap-4">
+                {% for image in pending %}
+                <div class="shadow-lg rounded-lg overflow-hidden">
+                    <img src="{{ url_for('static', filename='transactions/' ~ image) }}" alt="{{ image }}" class="w-full h-auto">
+                </div>
+                {% endfor %}
+            </div>
+            <span class="text-3xl font-semibold py-4">Failed Transactions</span>
+            <div class="grid grid-cols-2 gap-4">
+
+                {% for image in images %}
+                <div class="shadow-lg rounded-lg overflow-hidden">
+                    <img src="{{ url_for('static', filename='transactions/' ~ image) }}" alt="{{ image }}" class="w-full h-auto">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>
