@@ -57,4 +57,4 @@ def billings():
     return render_template('billings.html', active_page='billings', images=images)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False, port=5000)
